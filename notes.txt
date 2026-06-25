@@ -1,0 +1,84 @@
+#Notes
+
+When making a database make sure the Base is in env.py file in alembic by doing Base.metadata and make sure you import everything from models
+
+For database connection use .env for the inputs for secruity and whenever you wanna add new cols use alembics revision function and then  add it manually to the models
+
+Whenever you wanna get the variables from .env use the config.py
+
+
+---
+
+## What's happening when a user logs in
+
+```
+User sends email + password
+        │
+        ▼
+You check the DB — does this email exist? ✅
+        │
+        ▼
+You check — does the password match? ✅
+        │
+        ▼
+You create a JWT token and send it back
+```
+
+Think of the **JWT token like a wristband** at a concert. You prove who you are once at the door, they give you a wristband, and you use that wristband for everything else.
+
+---
+
+## What's inside the token
+
+```python
+data={"user_id": email_check.user_id, "role": email_check.role}
+```
+
+The token is just this data, **encoded and signed**. It's not encrypted — anyone can read it — but it **can't be faked** without your secret key.
+
+Think of it like a **tamper-proof sticker**. You can read what's on it, but you can't change it without breaking it.
+
+---
+
+## What happens on every request after login
+
+```
+User sends request + token
+        │
+        ▼
+oauth2_scheme pulls the token out of the header
+        │
+        ▼
+verify_access_token() decodes it → gets user_id
+        │
+        ▼
+get_current_user() uses user_id to fetch user from DB
+        │
+        ▼
+require_role() checks — is user.role allowed here?
+        │
+    ✅ yes → route runs        ❌ no → 403 Forbidden
+```
+
+---
+
+## The 3 things you added for roles
+
+**1. Role on the user in the DB**
+```python
+role = Column(String, default="viewer")  # every user has a role
+```
+
+**2. Role included in the token at login**
+```python
+data={"user_id": email_check.user_id, "role": email_check.role}  # baked into wristband
+```
+
+**3. Role check on protected routes**
+```python
+Depends(require_role(["admin"]))  # bouncer checks your wristband and you use this like you use for current_user thing
+```
+
+---
+
+That's the whole thing. Login gives you a wristband, every route has a bouncer, the bouncer checks your wristband. Want me to clarify any specific part?

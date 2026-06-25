@@ -1,8 +1,6 @@
-﻿# 💪 WorkoutApp Backend 💪 
+# 💪 WorkoutApp Backend
 
 A RESTful API backend for a workout tracking application built with **FastAPI**, **PostgreSQL**, and **SQLAlchemy**. Features JWT authentication, role-based access control, workout logging, and progress tracking.
-
-
 
 ---
 
@@ -209,11 +207,35 @@ Interactive docs available at **`http://localhost:8000/docs`**
 
 ---
 
-### 🛡 Admin (Expect Update Soon)
+### 🛡 Admin
 
 | Method | Endpoint | Description | Auth |
 |--------|----------|-------------|------|
 | `GET` | `/allworkouts?userid_search={id}` | View all workouts for any user | ✅ Admin only |
+| `GET` | `/allusers` | Get a list of all registered users | ✅ Admin only |
+| `PUT` | `/roleupdate` | Update a user's role | ✅ Admin only |
+
+**Get all users response:**
+```json
+[
+  {
+    "user_id": 1,
+    "email": "user@example.com",
+    "created_at": "2026-06-25T00:00:00",
+    "role": "User"
+  }
+]
+```
+
+**Role update request body:**
+```json
+{
+  "user_id": 2,
+  "role": "Admin"
+}
+```
+
+> **Note:** Admins cannot update their own role.
 
 ---
 

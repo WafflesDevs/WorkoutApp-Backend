@@ -61,3 +61,17 @@ class GoalsResponse(GoalsCreate):
 
     class Config:
         from_attributes = True
+class RoleUpdate(BaseModel):
+    user_id  : int
+    role: str 
+
+
+    class Config:
+        from_attributes = True
+class RoleUpdateReponse(BaseModel):
+    user_id  : int
+    role: str 
+
+
+    class Config:
+        from_attributes = True

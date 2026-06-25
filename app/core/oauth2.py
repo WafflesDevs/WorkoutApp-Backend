@@ -52,10 +52,6 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
 
 
 def require_role(allowed_roles: List[str]): #RUN THIS
-    """
-    Usage:  Depends(require_role(["admin"]))
-            Depends(require_role(["admin", "editor"]))
-    """
     def role_checker(current_user=Depends(get_current_user)):
         if current_user.role not in allowed_roles:
             raise HTTPException(

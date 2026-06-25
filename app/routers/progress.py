@@ -15,6 +15,9 @@ router = APIRouter(
 
 @router.post("/createprogress",status_code=status.HTTP_201_CREATED,response_description=schemas.GoalsResponse)
 def create_goal(info: schemas.GoalsCreate, db : Session  = Depends(get_db) , current_user: Users = Depends(oauth2.require_role(allowed_roles))):
+   check_goals = db.query(Progress).filter(Progress.owner_id ==current_user.user_id ).first()
+   if check_goals:
+       raise HTTPException(status_code=status.HTTP_306_RESERVED,detail=f"Goal already made!, Update your goal or delete it to make a new one.")
    goals = Progress(owner_id = current_user.user_id,**info.model_dump())
    db.add(goals)
    db.commit()

@@ -6,7 +6,7 @@ from fastapi import Depends
 from app.schemas import schemas
 from app.database.database import get_db
 from app.core import oauth2
-from app.model.model  import Users,Workout
+from app.model.model  import Users,Workout,Progress
 from app.core import utils
 from app.core.config import allowed_roles
 router = APIRouter(

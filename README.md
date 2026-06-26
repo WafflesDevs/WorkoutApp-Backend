@@ -1,4 +1,4 @@
-# 💪 WorkoutApp Backend
+# 💪 WorkoutApp Backend (UPDATED DAILY)
 
 A RESTful API backend for a workout tracking application built with **FastAPI**, **PostgreSQL**, and **SQLAlchemy**. Features JWT authentication, role-based access control, workout logging, and progress tracking.
 

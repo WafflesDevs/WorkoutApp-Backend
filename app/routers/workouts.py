@@ -9,6 +9,7 @@ from app.core import oauth2
 from app.model.model  import Users,Workout,Progress
 from app.core import utils
 from app.core.config import allowed_roles
+from app.core.config import gym_workouts
 router = APIRouter(
     tags=["Workouts"]
 )
@@ -42,3 +43,15 @@ def update_workout(id: int, workout: schemas.SameWeight, db: Session = Depends(g
     query.update(workout.model_dump())
     db.commit()
     return query.first()
+
+@router.get("/allworkouts",response_model=schemas.WorkoutResponse,status_code=status.HTTP_200_OK )
+def all_workouts(db: Session = Depends(get_db), current_user : Users = Depends(oauth2.require_role(allowed_roles))):
+   workouts = db.query(Workout).filter(Workout.owner_id == current_user.user_id).all()
+   if not workouts:
+       raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail=f"Workouts not found!")
+   return workouts
+
+@router.get("/workouts")
+def all_workouts_template():
+    return{"Workouts": gym_workouts}
+

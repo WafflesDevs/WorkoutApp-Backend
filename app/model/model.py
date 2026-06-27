@@ -34,3 +34,11 @@ class Progress(Base):
     biggest_weight = Column(Integer, nullable=False) # Ill grab the max weight produced in the workout table under the owner_id
     goal_weight = Column(Integer,nullable=False)
     created_at = Column(TIMESTAMP(timezone=True),server_default=text('now()'),nullable=False)
+
+
+# model.py - add this
+class BlacklistedToken(Base):
+    __tablename__ = "blacklisted_tokens"
+    id = Column(Integer, primary_key=True)
+    token = Column(String, nullable=False, unique=True)
+    blacklisted_at = Column(TIMESTAMP(timezone=True), server_default=text('now()'))

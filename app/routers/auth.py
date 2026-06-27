@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 from fastapi import Depends
 from app.database.database import get_db
 from app.core import oauth2
-from app.model.model  import Users
+from app.model.model  import Users,BlacklistedToken
 from app.core import utils
 from app.core.config import allowed_roles
 router = APIRouter(
@@ -29,4 +29,11 @@ def login_user(info: schemas.UserLogin, db: Session = Depends(get_db)):
         "role": email_check.role        # 👈 only change
     })
     return {"access_token": access_token, "token_type": "bearer"}
+
+@router.post("/logout", status_code=status.HTTP_200_OK)
+def logout(token: str = Depends(oauth2.oauth2_scheme), db: Session = Depends(get_db), current_user: Users = Depends(oauth2.require_role(allowed_roles))):
+    blacklisted = BlacklistedToken(token=token)
+    db.add(blacklisted)
+    db.commit()
+    return {"message": "Logged out successfully"}
 

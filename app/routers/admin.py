@@ -42,3 +42,6 @@ def update_role(info: schemas.RoleUpdate, db: Session = Depends(get_db), current
     db.refresh(checker)
     return checker
 
+
+
+

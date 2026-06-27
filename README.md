@@ -175,6 +175,7 @@ Interactive docs available at **`http://localhost:8000/docs`**
 | `POST` | `/workout` | Log a new workout | ✅ |
 | `PUT` | `/workout/{id}` | Update an existing workout | ✅ |
 | `DELETE` | `/workout/{id}` | Delete a workout | ✅ |
+| `GET` | `/workouts` | Provides a Preset List of Workouts | ❌ |
 
 **Workout request body:**
 ```json

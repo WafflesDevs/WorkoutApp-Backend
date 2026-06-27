@@ -13,7 +13,7 @@ router = APIRouter(
 )
 
 
-@router.post("/createprogress",status_code=status.HTTP_201_CREATED,response_description=schemas.GoalsResponse)
+@router.post("/createprogress",status_code=status.HTTP_201_CREATED,response_model=schemas.GoalsResponse)
 def create_goal(info: schemas.GoalsCreate, db : Session  = Depends(get_db) , current_user: Users = Depends(oauth2.require_role(allowed_roles))):
    check_goals = db.query(Progress).filter(Progress.owner_id ==current_user.user_id ).first()
    if check_goals:
@@ -23,7 +23,7 @@ def create_goal(info: schemas.GoalsCreate, db : Session  = Depends(get_db) , cur
    db.commit()
    db.refresh(goals)
    return goals
-@router.get("/progress", status_code=status.HTTP_200_OK, response_description=schemas.GoalsResponse)
+@router.get("/progress", status_code=status.HTTP_200_OK, response_model=schemas.GoalsResponse)
 def create_goal(db: Session = Depends(get_db), current_user: Users = Depends(oauth2.require_role(allowed_roles))):
     check = db.query(Progress).filter(Progress.owner_id == current_user.user_id).first()
 

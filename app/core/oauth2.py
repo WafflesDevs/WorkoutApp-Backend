@@ -13,7 +13,7 @@ from typing import List
 
 
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl='login')
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl='login') #Extracts the token and the login is where the token is made (THE ROUTE)
 # to get a string like this run:
 # openssl rand -hex 32
 SECRET_KEY = settings.secret_key

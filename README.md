@@ -2,6 +2,8 @@
 
 A RESTful API backend for a workout tracking application built with **FastAPI**, **PostgreSQL**, and **SQLAlchemy**. Features JWT authentication, role-based access control, workout logging, and progress tracking.
 
+# A frontend will be made soon using  React.js and other languages! 
+
 ---
 
 ## 🛠 Tech Stack

@@ -25,6 +25,7 @@ A RESTful API backend for a workout tracking application built with **FastAPI**,
     <td><img src="screenshots/login.png" width="280"/></td>
   </tr>
 </table>
+# A frontend will be made soon using  React.js and other languages! 
 
 ---
 

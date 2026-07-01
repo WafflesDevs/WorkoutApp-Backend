@@ -2,6 +2,30 @@
 
 A RESTful API backend for a workout tracking application built with **FastAPI**, **PostgreSQL**, and **SQLAlchemy**. Features JWT authentication, role-based access control, workout logging, and progress tracking.
 
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+
+---
+
+## 📸 Screenshots
+
+<table>
+  <tr>
+    <td align="center"><b>Landing Page</b></td>
+    <td align="center"><b>My Workouts</b></td>
+    <td align="center"><b>Sign In</b></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/landing-page.png" width="280"/></td>
+    <td><img src="screenshots/my-workouts.png" width="280"/></td>
+    <td><img src="screenshots/login.png" width="280"/></td>
+  </tr>
+</table>
+
 ---
 
 ## 🛠 Tech Stack

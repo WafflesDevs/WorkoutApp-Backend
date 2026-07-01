@@ -45,7 +45,7 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
         headers={"WWW-Authenticate": "Bearer"},
     )
     token_data = verify_access_token(token, credentials_exception)
-    user = db.query(model.Users).filter(model.Users.user_id == int(token_data.id)).first()
+    user = db.query(model.Users).filter(model.Users.user_id == int(token_data.id)).first() #USER,ROLE,ID,OWNER_ID,WORKOUT
     if user is None:
         raise credentials_exception
     return user
